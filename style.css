@@ -1,5 +1,19 @@
 /* TODO responsive  */
 
+:root {
+  --color-primary: #5ec576;
+  --color-secondary: #ffcb03;
+  --color-tertiary: #ff585f;
+  --color-primary-darker: #4bbb7d;
+  --color-secondary-darker: #ffbb00;
+  --color-tertiary-darker: #fd424b;
+  --color-primary-opacity: #5ec5763a;
+  --color-secondary-opacity: #ffcd0331;
+  --color-tertiary-opacity: #ff58602d;
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+  --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -29,10 +43,51 @@ body {
 /*  Navbar */
 .nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 6rem;
+  height: 9rem;
+  z-index: 10;
+}
+
+.nav.sticky {
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed;
+}
+
+.nav-logo {
+  height: 4.5rem;
+  transition: all 0.3s;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
+}
+
+.nav-item {
+  margin-left: 4rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.7rem;
+  font-weight: 400;
+  display: block;
+}
+
+.btn-nav-link {
+  color: #222;
+  background-color: var(--color-primary);
+  border-radius: 3rem;
+  padding: 0.8rem 2.5rem;
+}
+
+.btn-nav-link:hover,
+.btn-nav-link:active {
+  color: #333;
+  background-color: var(--color-primary-darker);
 }
