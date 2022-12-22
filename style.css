@@ -103,6 +103,7 @@ p {
   font-weight: 500;
   padding-bottom: 2px;
   cursor: pointer;
+  width: fit-content;
 }
 /*  Navbar */
 .nav {
