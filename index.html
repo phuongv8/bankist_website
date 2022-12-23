@@ -27,7 +27,7 @@
             <a class="nav-link" href="#section-3">Testimonials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn-nav-link btn-modal" href="#">Open account</a>
+            <a class="nav-link btn-nav-link btn-show" href="#">Open account</a>
           </li>
         </ul>
       </nav>
@@ -65,7 +65,7 @@
               <use xlink:href="img/icons.svg#icon-monitor"></use>
             </svg>
           </div>
-          <h5>100% digital bank</h5>
+          <h5 class="feature-header">100% digital bank</h5>
           <p>
             Online banking where you can check your account anywhere, anytime.
             No more going outside when it's cold. Stay cozy and spend time with
@@ -79,7 +79,7 @@
               <use xlink:href="img/icons.svg#icon-trending-up"></use>
             </svg>
           </div>
-          <h5>Watch your money grow</h5>
+          <h5 class="feature-header">Watch your money grow</h5>
           <p>
             Watch Netflix but still get passive income? We got you. Sit back and
             watch your money grow as fast as making instant ramen.
@@ -104,7 +104,7 @@
               <use xlink:href="img/icons.svg#icon-credit-card"></use>
             </svg>
           </div>
-          <h5>Free debit card included</h5>
+          <h5 class="feature-header">Free debit card included</h5>
           <p>
             All customers get a customized debit card and replacement card at no
             charge. Did we say free snacks too?
@@ -252,7 +252,7 @@
     <section class="section sign-up">
       <div class="section-title">
         <h3 class="section-header">Sign up now to win exclusive rewards!</h3>
-        <button class="btn btn-modal">Open your free account today!</button>
+        <button class="btn btn-show">Open your free account today!</button>
       </div>
     </section>
 
@@ -268,6 +268,24 @@
       </ul>
       <p>This bank is a learning project, not a real product.</p>
     </footer>
+
+    <div class="modal hidden">
+      <button class="btn-close">&times;</button>
+      <h2 class="modal-header">
+        Open your bank account in less than
+        <span class="highlight">5 minutes</span>
+      </h2>
+      <form class="modal-form">
+        <label>First Name</label>
+        <input type="text" />
+        <label>Last Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <button class="btn">Continue &rarr;</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
 
     <script src="script.js"></script>
   </body>
