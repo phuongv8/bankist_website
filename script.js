@@ -18,6 +18,12 @@ function toggleModal() {
   overlay.classList.toggle("hidden");
 }
 
+function escapeModal(e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    toggleModal();
+  }
+}
+
 function scrollDown() {
   section1.scrollIntoView({ behavior: "smooth" });
 }
@@ -49,12 +55,7 @@ function switchActiveTab(e) {
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
 overlay.addEventListener("click", toggleModal);
-
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-    toggleModal();
-  }
-});
+document.addEventListener("keydown", escapeModal);
 
 btnScroll.addEventListener("click", scrollDown);
 
