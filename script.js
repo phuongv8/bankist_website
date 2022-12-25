@@ -8,6 +8,7 @@ const btnOpenModal = document.querySelectorAll(".btn-show");
 const btnScroll = document.querySelector(".btn-scroll");
 const section1 = document.getElementById("section-1");
 const nav = document.querySelector(".nav");
+const navLinks = document.querySelector(".nav-links");
 const tabs = document.querySelectorAll(".operations-tab");
 const tabsContainer = document.querySelector(".operations-container");
 const tabsContent = document.querySelectorAll(".operations-content");
@@ -17,8 +18,17 @@ function toggleModal() {
   overlay.classList.toggle("hidden");
 }
 
-function scrollTo() {
+function scrollDown() {
   section1.scrollIntoView({ behavior: "smooth" });
+}
+
+function navigateToSections(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("nav-link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
@@ -32,4 +42,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-btnScroll.addEventListener("click", scrollTo);
+btnScroll.addEventListener("click", scrollDown);
+
+navLinks.addEventListener("click", navigateToSections);
