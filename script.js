@@ -31,8 +31,22 @@ function navigateToSections(e) {
   }
 }
 
-btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
+function switchActiveTab(e) {
+  const clicked = e.target.closest(".operations-tab");
 
+  // if click on container but outside btn, return null
+  if (!clicked) return;
+
+  tabs.forEach((tab) => tab.classList.remove("tab-active"));
+  tabsContent.forEach((content) => content.classList.remove("content-active"));
+
+  clicked.classList.add("tab-active");
+  document
+    .querySelector(`.content-${clicked.dataset.tab}`)
+    .classList.add("content-active");
+}
+
+btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
 overlay.addEventListener("click", toggleModal);
 
@@ -44,4 +58,9 @@ document.addEventListener("keydown", function (e) {
 
 btnScroll.addEventListener("click", scrollDown);
 
+/* Event delegation:
+1. Add event listener to common parent element 
+2. Determine what element originated the event */
+
 navLinks.addEventListener("click", navigateToSections);
+tabsContainer.addEventListener("click", switchActiveTab);
