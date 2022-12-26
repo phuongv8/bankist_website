@@ -4,14 +4,17 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close");
 const btnOpenModal = document.querySelectorAll(".btn-show");
-
 const btnScroll = document.querySelector(".btn-scroll");
 const section1 = document.getElementById("features");
+
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelector(".nav-links");
 const tabs = document.querySelectorAll(".operations-tab");
 const tabsContainer = document.querySelector(".operations-container");
 const tabsContent = document.querySelectorAll(".operations-content");
+
+const header = document.querySelector(".header");
+const navHeight = nav.getBoundingClientRect().height;
 
 function toggleModal() {
   modal.classList.toggle("hidden");
@@ -57,7 +60,7 @@ function fadeOnHover(e) {
     const link = e.target;
     const siblings = link
       .closest(".nav")
-      .querySelectorAll(".nav-link:not(.btn-nav-link");
+      .querySelectorAll(".nav-link:not(.btn-nav-link"); // select all except "Open Account"
 
     siblings.forEach((sibling) => {
       if (sibling !== link) sibling.style.opacity = this;
