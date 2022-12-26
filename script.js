@@ -52,6 +52,19 @@ function switchActiveTab(e) {
     .classList.add("content-active");
 }
 
+function fadeOnHover(e) {
+  if (e.target.classList.contains("nav-link")) {
+    const link = e.target;
+    const siblings = link
+      .closest(".nav")
+      .querySelectorAll(".nav-link:not(.btn-nav-link");
+
+    siblings.forEach((sibling) => {
+      if (sibling !== link) sibling.style.opacity = this;
+    });
+  }
+}
+
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
 overlay.addEventListener("click", toggleModal);
@@ -65,3 +78,6 @@ btnScroll.addEventListener("click", scrollDown);
 
 navLinks.addEventListener("click", navigateToSections);
 tabsContainer.addEventListener("click", switchActiveTab);
+
+nav.addEventListener("mouseover", fadeOnHover.bind(0.5));
+nav.addEventListener("mouseout", fadeOnHover.bind(1));
