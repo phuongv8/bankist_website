@@ -6,7 +6,7 @@ const btnCloseModal = document.querySelector(".btn-close");
 const btnOpenModal = document.querySelectorAll(".btn-show");
 
 const btnScroll = document.querySelector(".btn-scroll");
-const section1 = document.getElementById("section-1");
+const section1 = document.getElementById("features");
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelector(".nav-links");
 const tabs = document.querySelectorAll(".operations-tab");
