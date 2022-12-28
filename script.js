@@ -97,21 +97,24 @@ const headerObserver = new IntersectionObserver(
 headerObserver.observe(header);
 
 // Lazy loading image
+// FIXME bookmark bar lagging when jumping sections
 const loadImg = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.src = entry.target.dataset.src;
-      entry.target.addEventListener("load", function () {
-        this.classList.remove("lazy-img");
-      });
-      observer.unobserve(entry.target);
+      setTimeout(() => {
+        entry.target.src = entry.target.dataset.src;
+        entry.target.addEventListener("load", function () {
+          this.classList.remove("lazy-img");
+        });
+        observer.unobserve(entry.target);
+      }, 500);
     }
   });
 };
 
 const imageObserver = new IntersectionObserver(loadImg, {
   root: null,
-  threshold: 0.5,
+  threshold: 0.2,
   rootMargin: "0px 0px -200px 0px",
 });
 
