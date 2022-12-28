@@ -68,6 +68,25 @@ function fadeOnHover(e) {
   }
 }
 
+const callback = (nav, entries) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+};
+
+const options = {
+  root: null,
+  threshold: 0.2,
+  rootMargin: "0px 0px 0px 0px",
+};
+
+const headerObserver = new IntersectionObserver(
+  (entries) => callback(nav, entries),
+  options
+);
+
+headerObserver.observe(header);
+
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
 overlay.addEventListener("click", toggleModal);
