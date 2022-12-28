@@ -7,14 +7,13 @@ const btnOpenModal = document.querySelectorAll(".btn-show");
 const btnScroll = document.querySelector(".btn-scroll");
 const section1 = document.getElementById("features");
 
+const header = document.querySelector(".header");
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelector(".nav-links");
 const tabs = document.querySelectorAll(".operations-tab");
 const tabsContainer = document.querySelector(".operations-container");
 const tabsContent = document.querySelectorAll(".operations-content");
-
-const header = document.querySelector(".header");
-const navHeight = nav.getBoundingClientRect().height;
+const lazyImages = document.querySelectorAll("img[data-src]");
 
 function toggleModal() {
   modal.classList.toggle("hidden");
@@ -68,24 +67,77 @@ function fadeOnHover(e) {
   }
 }
 
-const callback = (nav, entries) => {
+const callback = (entries, observer) => {};
+
+const options = {
+  root: null,
+  threshold: [0, 0.2],
+};
+
+const observer = new IntersectionObserver(callback, options);
+
+// Sticky navigation
+const stickyNav = (nav, entries) => {
   const [entry] = entries;
   if (!entry.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
 };
 
-const options = {
+const headerOptions = {
   root: null,
   threshold: 0.2,
   rootMargin: "0px 0px 0px 0px",
 };
 
 const headerObserver = new IntersectionObserver(
-  (entries) => callback(nav, entries),
-  options
+  (entries) => stickyNav(nav, entries),
+  headerOptions
 );
 
 headerObserver.observe(header);
+
+// Lazy loading image
+// const loadImg = (entries, observer) => {
+//   entries.forEach((entry) => {
+//     if (entry.isIntersecting) {
+//       entry.target.src = entry.target.dataset.src;
+//       entry.target.addEventListener("load", function () {
+//         this.classList.remove("lazy-img");
+//       });
+//       observer.unobserve(entry.target);
+//     }
+//   });
+// };
+
+// const imageObserver = new IntersectionObserver(loadImg, {
+//   root: null,
+//   threshold: 0,
+//   rootMargin: "0px 0px -200px 0px",
+// });
+
+// lazyImages.forEach((img) => imageObserver.observe(img));
+const imgCallback = (entries, observer) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener("load", () => {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+};
+
+const imageObserver = new IntersectionObserver(imgCallback, imgOptions);
+
+lazyImages.forEach((img) => imageObserver.observe(img));
 
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
