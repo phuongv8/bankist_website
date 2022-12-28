@@ -67,14 +67,14 @@ function fadeOnHover(e) {
   }
 }
 
-const callback = (entries, observer) => {};
+// const callback = (entries, observer) => {};
 
-const options = {
-  root: null,
-  threshold: [0, 0.2],
-};
+// const options = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
 
-const observer = new IntersectionObserver(callback, options);
+// const observer = new IntersectionObserver(callback, options);
 
 // Sticky navigation
 const stickyNav = (nav, entries) => {
@@ -97,45 +97,23 @@ const headerObserver = new IntersectionObserver(
 headerObserver.observe(header);
 
 // Lazy loading image
-// const loadImg = (entries, observer) => {
-//   entries.forEach((entry) => {
-//     if (entry.isIntersecting) {
-//       entry.target.src = entry.target.dataset.src;
-//       entry.target.addEventListener("load", function () {
-//         this.classList.remove("lazy-img");
-//       });
-//       observer.unobserve(entry.target);
-//     }
-//   });
-// };
-
-// const imageObserver = new IntersectionObserver(loadImg, {
-//   root: null,
-//   threshold: 0,
-//   rootMargin: "0px 0px -200px 0px",
-// });
-
-// lazyImages.forEach((img) => imageObserver.observe(img));
-const imgCallback = (entries, observer) => {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-
-  entry.target.src = entry.target.dataset.src;
-
-  entry.target.addEventListener("load", () => {
-    entry.target.classList.remove("lazy-img");
+const loadImg = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.src = entry.target.dataset.src;
+      entry.target.addEventListener("load", function () {
+        this.classList.remove("lazy-img");
+      });
+      observer.unobserve(entry.target);
+    }
   });
-
-  observer.unobserve(entry.target);
 };
 
-const imgOptions = {
+const imageObserver = new IntersectionObserver(loadImg, {
   root: null,
-  threshold: 0,
-  rootMargin: "200px",
-};
-
-const imageObserver = new IntersectionObserver(imgCallback, imgOptions);
+  threshold: 0.5,
+  rootMargin: "0px 0px -200px 0px",
+});
 
 lazyImages.forEach((img) => imageObserver.observe(img));
 
