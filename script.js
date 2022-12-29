@@ -15,6 +15,11 @@ const tabsContainer = document.querySelector(".operations-container");
 const tabsContent = document.querySelectorAll(".operations-content");
 const lazyImages = document.querySelectorAll("img[data-src]");
 
+const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider-btn-left");
+const btnRight = document.querySelector(".slider-btn-right");
+const dot = document.querySelector(".dots");
+
 function toggleModal() {
   modal.classList.toggle("hidden");
   overlay.classList.toggle("hidden");
@@ -67,15 +72,6 @@ function fadeOnHover(e) {
   }
 }
 
-// const callback = (entries, observer) => {};
-
-// const options = {
-//   root: null,
-//   threshold: [0, 0.2],
-// };
-
-// const observer = new IntersectionObserver(callback, options);
-
 // Sticky navigation
 const stickyNav = (nav, entries) => {
   const [entry] = entries;
@@ -97,7 +93,6 @@ const headerObserver = new IntersectionObserver(
 headerObserver.observe(header);
 
 // Lazy loading image
-// FIXME bookmark bar lagging when jumping sections
 const loadImg = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -136,3 +131,7 @@ tabsContainer.addEventListener("click", switchActiveTab);
 
 nav.addEventListener("mouseover", fadeOnHover.bind(0.5));
 nav.addEventListener("mouseout", fadeOnHover.bind(1));
+
+btnRight.addEventListener("click", nextSlide);
+btnLeft.addEventListener("click", prevSlide);
+document.addEventListener("keydown", moveSlide);
