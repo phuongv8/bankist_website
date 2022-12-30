@@ -127,6 +127,10 @@ function changeSlide() {
     );
   }
 
+  function init() {
+    goToSlide(0);
+  }
+
   let currSlide = 0;
   const maxSlide = slides.length;
 
@@ -150,6 +154,7 @@ function changeSlide() {
     goToSlide(currSlide);
   }
 
+  init();
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
   document.addEventListener("keydown", moveSlideArrow);
