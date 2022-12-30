@@ -120,12 +120,17 @@ function changeSlide() {
     // Calculate the distance between curr and target
     // 100 - width of one slide, 100% - move one slide to the left
     slides.forEach(
-      (currSlide, currentSlideIndex) =>
+      (currSlide, currSlideIndex) =>
         (currSlide.style.transform = `translateX(${
-          100 * (currentSlideIndex - targetSlideIndex)
+          100 * (currSlideIndex - targetSlideIndex)
         }%)`)
     );
   }
+
+  btnRight.addEventListener("click", nextSlide);
+  btnLeft.addEventListener("click", prevSlide);
+  document.addEventListener("keydown", moveSlideArrow);
+  dot.addEventListener("click", moveSlideDot);
 }
 
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
@@ -145,8 +150,4 @@ tabsContainer.addEventListener("click", switchActiveTab);
 nav.addEventListener("mouseover", fadeOnHover.bind(0.5));
 nav.addEventListener("mouseout", fadeOnHover.bind(1));
 
-btnRight.addEventListener("click", nextSlide);
-btnLeft.addEventListener("click", prevSlide);
-document.addEventListener("keydown", moveSlideArrow);
-dot.addEventListener("click", moveSlideDot);
 changeSlide();
