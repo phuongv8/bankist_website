@@ -127,6 +127,29 @@ function changeSlide() {
     );
   }
 
+  let currSlide = 0;
+  const maxSlide = slides.length;
+
+  function nextSlide() {
+    if (currSlide === maxSlide - 1) {
+      currSlide = 0;
+    } else {
+      currSlide++;
+    }
+
+    goToSlide(currSlide);
+  }
+
+  function prevSlide() {
+    if (currSlide === 0) {
+      currSlide = maxSlide - 1;
+    } else {
+      currSlide--;
+    }
+
+    goToSlide(currSlide);
+  }
+
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
   document.addEventListener("keydown", moveSlideArrow);
