@@ -115,6 +115,19 @@ const imageObserver = new IntersectionObserver(loadImg, {
 
 lazyImages.forEach((img) => imageObserver.observe(img));
 
+function changeSlide() {
+  function goToSlide(targetSlideIndex) {
+    // Calculate the distance between curr and target
+    // 100 - width of one slide, 100% - move one slide to the left
+    slides.forEach(
+      (currSlide, currentSlideIndex) =>
+        (currSlide.style.transform = `translateX(${
+          100 * (currentSlideIndex - targetSlideIndex)
+        }%)`)
+    );
+  }
+}
+
 btnOpenModal.forEach((btn) => btn.addEventListener("click", toggleModal));
 btnCloseModal.addEventListener("click", toggleModal);
 overlay.addEventListener("click", toggleModal);
@@ -134,4 +147,6 @@ nav.addEventListener("mouseout", fadeOnHover.bind(1));
 
 btnRight.addEventListener("click", nextSlide);
 btnLeft.addEventListener("click", prevSlide);
-document.addEventListener("keydown", moveSlide);
+document.addEventListener("keydown", moveSlideArrow);
+dot.addEventListener("click", moveSlideDot);
+changeSlide();
