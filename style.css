@@ -354,7 +354,7 @@ p {
 
 /* Testimonials */
 .section-title-testimonials {
-  margin-bottom: 0rem;
+  margin-bottom: -3rem;
 }
 
 .testimonial {
