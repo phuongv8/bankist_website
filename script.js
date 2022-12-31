@@ -127,8 +127,23 @@ function changeSlide() {
     );
   }
 
-  function init() {
-    goToSlide(0);
+  function createDots() {
+    slides.forEach((_, i) => {
+      dot.insertAdjacentHTML(
+        "beforeend",
+        `<button class="dot" data-slide="${i}"></button>`
+      );
+    });
+  }
+
+  function activateDot(i) {
+    document
+      .querySelectorAll(".dot")
+      .forEach((dot) => dot.classList.remove("dot-active"));
+
+    document
+      .querySelector(`.dot[data-slide="${i}"]`)
+      .classList.add("dot-active");
   }
 
   let currSlide = 0;
@@ -142,6 +157,7 @@ function changeSlide() {
     }
 
     goToSlide(currSlide);
+    activateDot(currSlide);
   }
 
   function prevSlide() {
@@ -152,6 +168,21 @@ function changeSlide() {
     }
 
     goToSlide(currSlide);
+    activateDot(currSlide);
+  }
+
+  function moveSlideDot(e) {
+    if (e.target.classList.contains("dot")) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  }
+
+  function init() {
+    goToSlide(0);
+    createDots();
+    activateDot();
   }
 
   init();
