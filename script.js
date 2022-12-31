@@ -128,7 +128,7 @@ function changeSlide() {
   }
 
   function createDots() {
-    slides.forEach((_, i) => {
+    slides.forEach(function (_, i) {
       dot.insertAdjacentHTML(
         "beforeend",
         `<button class="dot" data-slide="${i}"></button>`
@@ -182,13 +182,13 @@ function changeSlide() {
   function init() {
     goToSlide(0);
     createDots();
-    activateDot();
+    activateDot(0);
   }
 
   init();
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
-  document.addEventListener("keydown", moveSlideArrow);
+  // document.addEventListener("keydown", moveSlideArrow);
   dot.addEventListener("click", moveSlideDot);
 }
 
