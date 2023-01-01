@@ -554,7 +554,6 @@ p {
   padding: 5rem 6rem;
   background-color: #f3f3f3;
   z-index: 100;
-  transition: all 0.5s;
 }
 
 .overlay {
