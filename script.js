@@ -179,6 +179,10 @@ function changeSlide() {
     }
   }
 
+  function moveSlideArrow(e) {
+    if (e.key === "ArrowRight") nextSlide();
+    if (e.key === "ArrowLeft") prevSlide();
+  }
   function init() {
     goToSlide(0);
     createDots();
@@ -188,7 +192,7 @@ function changeSlide() {
   init();
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
-  // document.addEventListener("keydown", moveSlideArrow);
+  document.addEventListener("keydown", moveSlideArrow);
   dot.addEventListener("click", moveSlideDot);
 }
 
